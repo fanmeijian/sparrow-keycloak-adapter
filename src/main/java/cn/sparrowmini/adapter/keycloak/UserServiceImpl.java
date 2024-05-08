@@ -1,4 +1,4 @@
-package cn.sparrowmini;
+package cn.sparrowmini.adapter.keycloak;
 
 import cn.sparrowmini.common.BaseEntity;
 import cn.sparrowmini.pem.model.SparrowJpaFilter;
@@ -40,7 +40,7 @@ public class UserServiceImpl extends AbstractUserServiceImpl {
     @Override
     public Page<User> getAllUsers(Pageable pageable, List<SparrowJpaFilter> jpaFilters) {
         List<UserRepresentation> usersList = keycloak.realm(keycloakSpringBootProperties.getRealm()).users()
-                .list(pageable.getPageNumber(), pageable.getPageSize());
+                .list((int) pageable.getOffset(), pageable.getPageSize());
         long count = keycloak.realm(keycloakSpringBootProperties.getRealm()).users().count();
         return new PageImpl<>(usersList.stream()
                 .map(m -> new User(m.getUsername(), m.getEmail(), "", m.getId(), m.getFirstName(), m.getLastName(),m.isEnabled()))

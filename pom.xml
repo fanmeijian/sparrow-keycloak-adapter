@@ -6,7 +6,8 @@
 
     <groupId>cn.sparrowmini</groupId>
     <artifactId>sparrow-keycloak-adapter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.2</version>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -31,7 +32,7 @@
         <dependency>
             <groupId>cn.sparrowmini</groupId>
             <artifactId>sparrow-org</artifactId>
-            <version>0.0.2</version>
+            <version>0.1.1</version>
         </dependency>
         <!--keycloak 服务调用, manual add jsr305 for admin client will exclude it -->
         <dependency>
