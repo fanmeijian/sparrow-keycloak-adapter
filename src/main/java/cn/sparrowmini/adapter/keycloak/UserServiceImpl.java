@@ -1,6 +1,6 @@
 package cn.sparrowmini.adapter.keycloak;
 
-import cn.sparrowmini.common.BaseEntity;
+import cn.sparrowmini.common.model.ErrMessage;
 import cn.sparrowmini.pem.model.SparrowJpaFilter;
 import cn.sparrowmini.pem.model.User;
 import cn.sparrowmini.pem.service.impl.AbstractUserServiceImpl;
@@ -48,7 +48,7 @@ public class UserServiceImpl extends AbstractUserServiceImpl {
     }
 
     @Override
-    public Map<String, List<BaseEntity.ErrMsg>> create(Set<User> users) {
+    public Map<String, List<ErrMessage>> create(Set<User> users) {
         users.forEach(u -> {
             CredentialRepresentation credential = new CredentialRepresentation();
             credential.setType(CredentialRepresentation.PASSWORD);
@@ -105,7 +105,7 @@ public class UserServiceImpl extends AbstractUserServiceImpl {
     }
 
     @Override
-    public List<BaseEntity.ErrMsg> update(@PathVariable String username, @RequestBody Map<String, Object> map) {
+    public List<ErrMessage> update(@PathVariable String username, @RequestBody Map<String, Object> map) {
         UsersResource usersResource = keycloak.realm(keycloakSpringBootProperties.getRealm()).users();
         UserRepresentation userRepresentation = usersResource.search(username,true).get(0);
         UserResource userResource = usersResource.get(userRepresentation.getId());
